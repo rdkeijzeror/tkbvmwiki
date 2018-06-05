@@ -17,12 +17,16 @@ You need VirtualBox installed and Vagrant
 
 After copying the tkb_wiki_????????.tgz to tkb_wiki.tgz in this directory
 You can create and start the VM with the command 
+```
 vagrant up
+```
 when this is finished you can connect to the dokuwiki with the link
 at the end of this document.
 
 To remove the VM you can run the command
+```
 vagrant destroy
+```
 
 Dokuwiki accesible through http://192.168.33.20/wiki
 

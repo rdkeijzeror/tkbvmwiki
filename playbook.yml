@@ -1,0 +1,44 @@
+---
+- hosts: wikiservers
+  become: True
+  become_method: sudo
+  tasks:
+    - name: install libsemanage-python
+      yum: 
+        name: libsemanage-python
+    - selinux:
+        policy: targeted
+        state: permissive
+    - name: ensure apache is at the latest version
+      yum:
+        name: httpd
+        state: latest
+    - name: ensure php is at the latest version
+      yum:
+        name: php
+        state: latest
+      notify:
+        - restart apache
+    - name: apache
+      service:
+        name: httpd
+        state: started
+        enabled: yes
+    - name: Set httpd_can_network_connect flag on and keep it persistent across reboots
+      seboolean:
+        name: httpd_can_network_connect
+        state: yes
+        persistent: yes
+    - name: unpack tkb dokuwiki
+      unarchive:
+        src: /vagrant/tkb_wiki.tgz
+        dest: /var/www/html/
+        remote_src: no
+        owner: apache
+        group: apache
+  handlers:
+    - name: restart apache
+      service:
+        name: httpd
+        state: restarted
+

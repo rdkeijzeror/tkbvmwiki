@@ -2,9 +2,7 @@
 # TKB offline codecorner wiki vagrant/ansible code
 
 ```
-git clone git@github.com:rdkeijzeror/tkbvmwiki.git
-or
-git https://github.com/rdkeijzeror/tkbvmwiki.git
+git clone https://github.com/rdkeijzeror/tkbvmwiki.git
 cp /backup/tkb_wiki_????????.tgz tkb_wiki.tgz
 vagrant up
 ```
